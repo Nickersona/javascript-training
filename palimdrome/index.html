@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<title></title>
+		<script type="text/javascript">
+			function iterator(){
+				var biggest = 0;
+				
+				for(var i = 1; i <= 999; i++){
+					for(var j = 1; j <= 999; j++){
+						if(is_palimdrome(i*j))
+							if(i*j > biggest)
+							 biggest = i*j;
+					}	
+				
+				}
+				return biggest;
+				
+			}
+			
+			function is_palimdrome(string){
+				//divide in half, determine that it's an even number of characters
+				string = string.toString();
+				if(string.length < 2) {
+					return false;
+				}
+				
+				var charArray = string.split('');
+				odd = false;
+				if(string.length%2 !== 0){odd = true;};
+	
+				var halfPoint = string.length/2;
+				
+				if(odd){charArray.splice(halfPoint, 1)}; //We'll just remove the middle character if 
+				
+				var firstHalf = '';
+				var  lastHalf = '';
+				for(var i = 1; i <= charArray.length; i++){
+					if(i <= halfPoint){
+						firstHalf += charArray[i-1];
+					}else{
+						lastHalf += charArray[i-1];
+					}
+				}
+				//compare the first half to the inverse of the second half. 				
+				reverseLastHalf = lastHalf.split('').reverse().join('');				
+				//if match return true
+				
+				if(reverseLastHalf == firstHalf){
+					return true;
+				}else{
+					return false;
+				}
+				return 
+			}
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

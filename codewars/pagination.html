@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title></title>
+		<script type="text/javascript">
+			var PaginationHelper = function(pages, per_page){
+				this.per_page = per_page;
+				this.pages = pages;
+				this.item_count = this.itemCount();
+				this.page_count = this.pageCount();
+				
+			}
+			
+			PaginationHelper.prototype.pageCount = function(){
+				return  Math.ceil(this.pages.length/this.per_page);
+			}
+			
+			PaginationHelper.prototype.itemCount = function(page){
+				return this.pages.length;
+			}
+			
+			PaginationHelper.prototype.pageItemCount = function(page){
+				if(page < 0 || page > this.page_count-1) return -1;
+				return (page < this.page_count-1)? this.per_page : this.item_count%this.per_page;
+			}
+			
+			PaginationHelper.prototype.pageIndex = function(index){
+				if(typeof this.pages[index] === 'undefined') return -1;
+				return Math.floor(index/this.per_page);
+			}
+			
+			helper = new PaginationHelper([1,2,3,4,5,6], 4);
+
+			console.log(helper.pageIndex(0)); //should == 0
+			console.log(helper.pageIndex(1)); //should == 0
+			console.log(helper.pageIndex(2)); //should == 0
+			console.log(helper.pageIndex(3)); //should == 0
+			console.log(helper.pageIndex(4)); //should == 0
+			console.log(helper.pageIndex(5)); //should == -1
+
+			//console.log(helper.pageIndex(-10)); //should == -1
+	
+		</script>
+	</head>
+	<body>
+	For this exercise you will be strengthening your page-fu mastery. You will complete the PaginationHelper class, which is a utility class helpful for querying paging information related to an array.
+	
+	The class is designed to take in an array of values and an integer indicating how many items will be allowed per each page. The types of values contained within the collection/array are not relevant.
+	
+	The following are some examples of how this class is used:
+	
+	var helper = new PaginationHelper([1,2,3,4,5,6], 4);
+	helper.pageCount(); //should == 2
+	helper.itemCount(); //should == 6
+	helper.pageItemCount(0); //should == 4
+	helper.pageItemCount(1); // last page - should == 2
+	helper.pageItemCount(2); // should == -1 since the page is invalid
+	
+	helper.pageIndex(5); //should == 1 (zero based index)
+	helper.pageIndex(2); //should == 0
+	helper.pageIndex(20); //should == -1
+	helper.pageIndex(-10); //should == -1
+
+	</body>
+</html>

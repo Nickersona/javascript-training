@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title></title>
+		<script type="text/javascript">
+			// TODO: implement 'mergesorted'
+			// test ensures: a and b are both arrays, consisting entirely of integers...
+			//...,both arrays are sorted and contain at least 1 integer.
+			// ALSO: the Array.sort function has been disabled for this excercise.
+			function mergesorted(a, b) {
+
+              if(!validateArray(a) || !validateArray(b)) return false;
+			  ret_array = new Array;
+			  ret_array.push(a[0]);
+			  if(a.length === 2 ) ret_array.push(a[1]);
+			  ret_array.push(b[0]);
+			  if(b.length === 2 ) ret_array.push(b[1]);
+			  return ret_array;
+			}
+			
+			function validateArray(a){
+			  if(!Array.isArray(a)) return false;
+			  for(var i = 0; i < a.length; i++){
+				var a1 = typeof a[0];
+				//console.log(a1);
+				var valid = (a1 === 'number' || a1 === 'undefined')? true : false;
+				//console.log(valid);
+				if(valid == false) return false;
+			  }
+			  return true;
+			  //return (valid1 && valid2);			  
+			}
+			
+			console.log(mergesorted([1,2,3],[1,2,3]));
+
+	
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
